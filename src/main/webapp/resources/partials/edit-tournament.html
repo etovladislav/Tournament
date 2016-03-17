@@ -1,0 +1,30 @@
+<div class="row marketing main-wrapper" ng-controller="TournamentCtrl">
+    <div class="col-lg-8">
+        <h3>{{vm.tournament.tournamentName}}</h3>
+        <label for="name-command">Введите название команды:</label>
+        <div class="input-group">
+            <input type="text" id="name-command" class="form-control" ng-model="vm.teamName">
+      <span class="input-group-btn">
+        <button class="btn btn-success" type="button" ng-click="vm.addTeam()">Добавить</button>
+      </span>
+        </div><!-- /input-group -->
+        <div class="command-list">
+            <table class="edit-command">
+                <thead>
+                <tr>
+                    <th width="130px">Список команд:</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="team in vm.tournament.teams">
+                    <a href="#" editable-text="team.name">{{ team.name || "empty" }}</a>
+                    <td>{{team.name}}
+                    </td>
+                    <td><a href=""><i class="fa fa-pencil"></i></a></td>
+                    <td><a class="delete-command"><i class="fa fa-trash-o"></i></a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
