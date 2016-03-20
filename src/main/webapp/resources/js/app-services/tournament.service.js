@@ -17,6 +17,7 @@ function TournamentService($http) {
     service.GetTournamentById = GetTournamentById;
     service.Create = Create;
     service.Update = Update;
+    service.addTeam = addTeam;
 
     return service;
 
@@ -36,8 +37,8 @@ function TournamentService($http) {
         return $http.post('/api/tournaments/createTournament', tournament);
     }
 
-    function addTeam(name, tournamentId) {
-        return $http.get('/api/tournaments/addTeam?name='+ name+'&tournamentId='+tournamentId);
+    function addTeam(data) {
+        return $http.post('/api/tournaments/addTeam', data);
     }
 
     function Update(tournament) {

@@ -2,15 +2,15 @@ package ru.kpfu.itis.tournament.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ru.kpfu.itis.tournament.form.TournamentForm;
+import ru.kpfu.itis.tournament.model.Team;
 import ru.kpfu.itis.tournament.model.Tournament;
-import ru.kpfu.itis.tournament.model.User;
+import ru.kpfu.itis.tournament.service.TeamService;
 import ru.kpfu.itis.tournament.service.TournamentService;
+import ru.kpfu.itis.tournament.form.TeamForm;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,6 +21,9 @@ public class TournamentController {
 
     @Autowired
     TournamentService tournamentService;
+
+    @Autowired
+    TeamService teamService;
 
     @RequestMapping(value = "/api/tournaments/createTournament", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
@@ -42,9 +45,11 @@ public class TournamentController {
         return tournamentService.getTournamentById(id);
     }
 
-    @RequestMapping(value = "/api/tournaments/addTeam", method = RequestMethod.GET)
-    public void addTeam(@MatrixVariable String name, @MatrixVariable Long tournamentId) {
-        System.out.println(name + " " + tournamentId);
+    @RequestMapping(value = "/api/tournaments/addTeam", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public Team addTeam(@RequestBody TeamForm team) {
+        return teamService.addTeam(team);
     }
 
 }
