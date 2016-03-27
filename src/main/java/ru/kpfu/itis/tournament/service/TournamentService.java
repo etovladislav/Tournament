@@ -17,4 +17,6 @@ public interface TournamentService {
     List<Tournament> getUserTournaments();
 
     Tournament getTournamentById(Long id);
+
+    Tournament generateSchedule(Long tournamentId);
 }

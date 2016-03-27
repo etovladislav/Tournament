@@ -29,9 +29,14 @@ public class Tournament {
     @JsonIgnore
     User user;
 
+    Integer tour;
+
+
+    @JsonIgnore
     @OneToMany(mappedBy = "tournament", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     List<Team> teams;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "tournament", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     List<Match> matches;
 

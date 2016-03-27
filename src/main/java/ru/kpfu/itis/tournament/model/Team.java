@@ -18,8 +18,34 @@ public class Team {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "points")
-    Integer points;
+    //Очки
+    @Column(name = "number_points")
+    Integer numberPoints;
+
+    //Количество игр
+    @Column(name = "number_games")
+    Integer numberGames;
+
+    //количество побед
+    @Column(name = "number_victories")
+    Integer numberVictories;
+
+    //количество порадений
+    @Column(name = "number_defeats")
+    Integer numberDefeats;
+
+    //пропущено голов
+    @Column(name = "number_passed")
+    Integer numberPassed;
+
+    //ничьих
+    @Column(name = "number_draw")
+    Integer numberDraw;
+
+    //забито голов
+    @Column(name = "number_score")
+    Integer numberScore;
+
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "tournament_id")
@@ -27,11 +53,6 @@ public class Team {
     Tournament tournament;
 
     public Team() {
-    }
-
-    public Team(String name, Integer points) {
-        this.name = name;
-        this.points = points;
     }
 
     public Long getId() {
@@ -50,12 +71,60 @@ public class Team {
         this.name = name;
     }
 
-    public Integer getPoints() {
-        return points;
+    public Integer getNumberPoints() {
+        return numberPoints;
     }
 
-    public void setPoints(Integer points) {
-        this.points = points;
+    public void setNumberPoints(Integer numberPoints) {
+        this.numberPoints = numberPoints;
+    }
+
+    public Integer getNumberGames() {
+        return numberGames;
+    }
+
+    public void setNumberGames(Integer numberGames) {
+        this.numberGames = numberGames;
+    }
+
+    public Integer getNumberVictories() {
+        return numberVictories;
+    }
+
+    public void setNumberVictories(Integer numberVictories) {
+        this.numberVictories = numberVictories;
+    }
+
+    public Integer getNumberDefeats() {
+        return numberDefeats;
+    }
+
+    public void setNumberDefeats(Integer numberDefeats) {
+        this.numberDefeats = numberDefeats;
+    }
+
+    public Integer getNumberPassed() {
+        return numberPassed;
+    }
+
+    public void setNumberPassed(Integer numberPassed) {
+        this.numberPassed = numberPassed;
+    }
+
+    public Integer getNumberDraw() {
+        return numberDraw;
+    }
+
+    public void setNumberDraw(Integer numberDraw) {
+        this.numberDraw = numberDraw;
+    }
+
+    public Integer getNumberScore() {
+        return numberScore;
+    }
+
+    public void setNumberScore(Integer numberScore) {
+        this.numberScore = numberScore;
     }
 
     public Tournament getTournament() {

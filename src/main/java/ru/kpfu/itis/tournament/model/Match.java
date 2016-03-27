@@ -1,6 +1,8 @@
 package ru.kpfu.itis.tournament.model;
 
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 import javax.persistence.*;
 
 /**
@@ -30,19 +32,32 @@ public class Match {
     @Column(name = "number_goals_t2")
     Integer numberGoalsT2;
 
+    @Column(name = "number_tour")
+    Integer numberTour;
+
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "tournament_id")
+    @JsonIgnore
     Tournament tournament;
 
     public Match() {
     }
 
-    public Match(Team team1, Team team2, Integer numberGoalsT1, Integer numberGoalsT2, Tournament tournament) {
+    public Match(Team team1, Team team2, Integer numberGoalsT1, Integer numberGoalsT2, Integer numberTour, Tournament tournament) {
         this.team1 = team1;
         this.team2 = team2;
         this.numberGoalsT1 = numberGoalsT1;
         this.numberGoalsT2 = numberGoalsT2;
+        this.numberTour = numberTour;
         this.tournament = tournament;
+    }
+
+    public Integer getNumberTour() {
+        return numberTour;
+    }
+
+    public void setNumberTour(Integer numberTour) {
+        this.numberTour = numberTour;
     }
 
     public Long getId() {

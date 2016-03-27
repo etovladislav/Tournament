@@ -32,9 +32,9 @@ tournamentApp.config(['$routeProvider',
                 controller: 'TournamentEditCtrl',
                 controllerAs: 'vm'
             })
-            .when('/table', {
+            .when('/tournament/:tId', {
                 templateUrl: 'partials/table.html',
-                controller: 'ournamentEditCtrl',
+                controller: 'TableCtrl',
                 controllerAs: 'vm'
             })
             .otherwise({redirectTo: '/'});

@@ -1,6 +1,7 @@
 package ru.kpfu.itis.tournament.service;
 
 import ru.kpfu.itis.tournament.form.TeamForm;
+import ru.kpfu.itis.tournament.form.TeamUpdateForm;
 import ru.kpfu.itis.tournament.model.Team;
 
 /**
@@ -9,4 +10,6 @@ import ru.kpfu.itis.tournament.model.Team;
 public interface TeamService {
 
     Team addTeam(TeamForm teamForm);
+
+    Team editTeam(TeamUpdateForm team);
 }

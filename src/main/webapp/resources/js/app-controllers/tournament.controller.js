@@ -16,6 +16,7 @@ function TournamentCtrl(TournamentService, $location, $rootScope) {
     vm.error = false;
     vm.createTournament = createTournament;
 
+
     function createTournament() {
         TournamentService.Create(vm.tournament).success(function(data) {
             $location.path('/my');

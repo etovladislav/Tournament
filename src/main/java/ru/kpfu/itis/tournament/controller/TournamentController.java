@@ -4,7 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import ru.kpfu.itis.tournament.form.TeamUpdateForm;
+import ru.kpfu.itis.tournament.form.TournamentDto;
 import ru.kpfu.itis.tournament.form.TournamentForm;
+import ru.kpfu.itis.tournament.model.Match;
 import ru.kpfu.itis.tournament.model.Team;
 import ru.kpfu.itis.tournament.model.Tournament;
 import ru.kpfu.itis.tournament.service.TeamService;
@@ -35,14 +38,21 @@ public class TournamentController {
     public
     @ResponseBody
     List<Tournament> getTournaments() {
-        return tournamentService.getUserTournaments();
+        List<Tournament> tournaments = tournamentService.getUserTournaments();
+        return tournaments;
     }
 
     @RequestMapping(value = "/api/tournaments/getTournamentById/{id}", method = RequestMethod.GET)
     public
     @ResponseBody
-    Tournament getTournamentById(@PathVariable Long id) {
-        return tournamentService.getTournamentById(id);
+    TournamentDto getTournamentById(@PathVariable Long id) {
+        TournamentDto tournamentDto = new TournamentDto();
+        Tournament tournament = tournamentService.getTournamentById(id);
+        tournamentDto.setId(tournament.getId());
+        tournamentDto.setCity(tournament.getCity());
+        tournamentDto.setTeams(tournament.getTeams());
+        tournamentDto.setTournamentName(tournament.getTournamentName());
+        return tournamentDto;
     }
 
     @RequestMapping(value = "/api/tournaments/addTeam", method = RequestMethod.POST)
@@ -50,6 +60,20 @@ public class TournamentController {
     @ResponseBody
     public Team addTeam(@RequestBody TeamForm team) {
         return teamService.addTeam(team);
+    }
+
+    @RequestMapping(value = "/api/tournaments/editTeam", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public Team editTeam(@RequestBody TeamUpdateForm team) {
+        return teamService.editTeam(team);
+    }
+
+    @RequestMapping(value = "/api/tournaments/generateSchedule/{id}", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public List<Match> getSchedule(@PathVariable Long id) {
+        return tournamentService.generateSchedule(id).getMatches();
     }
 
 }

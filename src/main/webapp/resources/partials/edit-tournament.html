@@ -9,6 +9,9 @@
       </span>
         </div><!-- /input-group -->
         <div class="command-list">
+            <button class="btn btn-default" ng-click="vm.generateSchedule(vm.tournament.id)">Сгенерировать расписание</button>
+            <br>
+            <br>
             <table class="edit-command">
                 <thead>
                 <tr>
@@ -16,15 +19,21 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="team in vm.tournament.teams">
-                    <a href="#" editable-text="team.name">{{ team.name || "empty" }}</a>
-                    <td>{{team.name}}
-                    </td>
-                    <td><a href=""><i class="fa fa-pencil"></i></a></td>
-                    <td><a class="delete-command"><i class="fa fa-trash-o"></i></a></td>
+                <tr ng-repeat="team in vm.tournament.teams" ng-include="vm.getTemplate(team)">
                 </tr>
                 </tbody>
             </table>
+            <script type="text/ng-template" id="display">
+                <td><a href="/tournament/{{vm.tournament.id}}">{{team.name}}</a>
+                </td>
+                <td><a ng-click="vm.editTeam(team)"><i class="fa fa-pencil"></i></a></td>
+                <td><a class="delete-command"><i class="fa fa-trash-o"></i></a></td>
+            </script>
+            <script type="text/ng-template" id="edit">
+                <td><input type="text" class="form-control" ng-model="vm.selected.name"/></td>
+                <td><a ng-click="vm.saveTeam($index)"><i class="fa fa-check"></i></a></td>
+                <td><a class="delete-command" ng-click="vm.reset()"><i class="fa fa-times"></i></a></td>
+            </script>
         </div>
     </div>
 </div>
