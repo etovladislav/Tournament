@@ -7,12 +7,12 @@
             </a>
         </div>
         <hr>
-            <input type="text" class="form-control" ng-model="query" placeholder="Поиск.." style="margin-bottom: 10px">
+        <input type="text" class="form-control" ng-model="query" placeholder="Поиск.." style="margin-bottom: 10px">
         <hr>
         <div class="panel panel-default" ng-repeat="tournament in vm.tournaments | filter:query | orderBy:'$index':true">
             <div class="panel-body">
                 <a href="#/tournament/{{tournament.id}}" class="pull-left" style="color: black">{{tournament.tournamentName}}</a>
-                <a href="#/edit-tournament/{{tournament.id}}" class="pull-right"><i class="fa fa-pencil" style="color: green;"></i></a>
+                <a href="#/edit-tournament/{{tournament.id}}" class="pull-right"><i class="fa fa-pencil" style="color: green;"></i> Редактировать</a>
             </div>
         </div>
     </div>

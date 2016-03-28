@@ -20,6 +20,7 @@ function TournamentService($http) {
     service.addTeam = addTeam;
     service.editTeam = editTeam;
     service.generateSchedule = generateSchedule;
+    service.GetSchedule = GetSchedule;
 
     return service;
 
@@ -51,8 +52,13 @@ function TournamentService($http) {
     function Update(tournament) {
         return $http.put('/api/tournaments/update' + tournament);
     }
+
     function generateSchedule(id) {
-        return $http.get('/api/tournaments/generateSchedule/'+id);
+        return $http.get('/api/tournaments/generateSchedule/' + id);
+    }
+
+    function GetSchedule(id) {
+        return $http.get('/api/tournaments/getSchedule/' + id);
     }
 
 }

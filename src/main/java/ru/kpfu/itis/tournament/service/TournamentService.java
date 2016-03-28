@@ -1,6 +1,7 @@
 package ru.kpfu.itis.tournament.service;
 
 import ru.kpfu.itis.tournament.form.TournamentForm;
+import ru.kpfu.itis.tournament.model.Match;
 import ru.kpfu.itis.tournament.model.Tournament;
 
 import java.util.List;
@@ -18,5 +19,9 @@ public interface TournamentService {
 
     Tournament getTournamentById(Long id);
 
-    Tournament generateSchedule(Long tournamentId);
+    void generateSchedule(Long tournamentId);
+
+    List<Match> getSchedule(Long id);
+
+    Integer getNumberTour(Long id);
 }

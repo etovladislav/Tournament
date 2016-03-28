@@ -1,9 +1,4 @@
 /**
- * Created by etovladislav on 10.03.16.
- */
-'use strict';
-
-/**
  * Created by etovladislav on 13.03.16.
  */
 
@@ -20,7 +15,27 @@ function TableCtrl(TournamentService, $location, $rootScope, $routeParams) {
     vm.tournament = null;
     vm.tId = $routeParams.tId;
 
-    console.log($routeParams);
+    vm.tours = null;
+
+    vm.isSchedule = false;
+
+    vm.isTable = true;
+
+    vm.showSchedule = function () {
+        if (vm.tours == null) {
+            TournamentService.GetSchedule(vm.tId).success(function (data) {
+                vm.tours = data;
+            })
+        }
+        vm.isTable = false;
+        vm.isSchedule = true;
+
+    };
+
+    vm.showTable = function () {
+        vm.isTable = true;
+        vm.isSchedule = false;
+    };
 
 
     TournamentService.GetTournamentById(vm.tId).success(function (data) {

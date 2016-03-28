@@ -4,16 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import ru.kpfu.itis.tournament.form.TeamUpdateForm;
-import ru.kpfu.itis.tournament.form.TournamentDto;
-import ru.kpfu.itis.tournament.form.TournamentForm;
+import ru.kpfu.itis.tournament.form.*;
 import ru.kpfu.itis.tournament.model.Match;
 import ru.kpfu.itis.tournament.model.Team;
 import ru.kpfu.itis.tournament.model.Tournament;
 import ru.kpfu.itis.tournament.service.TeamService;
 import ru.kpfu.itis.tournament.service.TournamentService;
-import ru.kpfu.itis.tournament.form.TeamForm;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -71,9 +69,31 @@ public class TournamentController {
 
     @RequestMapping(value = "/api/tournaments/generateSchedule/{id}", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
+    public void generateSchedule(@PathVariable Long id) {
+        tournamentService.generateSchedule(id);
+    }
+
+    @RequestMapping(value = "/api/tournaments/getSchedule/{id}", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public List<Match> getSchedule(@PathVariable Long id) {
-        return tournamentService.generateSchedule(id).getMatches();
+    public List<Tour> getSchedule(@PathVariable Long id) {
+        Integer numberTour = tournamentService.getNumberTour(id);
+        List<Match> matches = tournamentService.getSchedule(id);
+        List<Tour> tours = new ArrayList<>();
+        for(int i = 0; i< numberTour; i++) {
+            Tour tour = new Tour();
+            tour.setNumberTour(i+1);
+            List<Match> matches1 = new ArrayList<>();
+            for (Match match : matches) {
+                if (match.getNumberTour() == i + 1) {
+                    matches1.add(match);
+                }
+            }
+            tour.setMatchList(matches1);
+            tours.add(tour);
+        }
+
+        return tours;
     }
 
 }

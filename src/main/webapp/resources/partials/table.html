@@ -1,11 +1,30 @@
 <div class="row marketing">
     <div class="header-table-nav">
-        <a href="" class="active"><i class="fa fa-th-list"> Список</i></a>
+        <a href="" ng-class="vm.isTable?'active':''" ng-click="vm.showTable()"><i class="fa fa-th-list"> Список</i></a>
         <!--<a href=""><i class="fa fa-th"> Шахматка</i></a>-->
-        <a href=""><i class="fa fa-calendar"> Расписание</i></a>
+        <a href="" ng-click="vm.showSchedule()" ng-class="vm.isSchedule?'active':''"><i class="fa fa-calendar">
+            Расписание</i></a>
     </div>
     <div style="text-align: left">
-        <table class="table table-hover table-test-1" id="table" ng-cloak>
+        <div class="col-lg-12 schedule" ng-if="vm.isSchedule">
+            <div  ng-repeat="tour in vm.tours | orderBy:'-numberTour':true">
+                <h3 style="color: black">{{tour.numberTour}} тур</h3>
+                <div class="panel panel-default" ng-animate="'animate'" ng-repeat="match in tour.matchList">
+                    <div class="panel-body" style="color:black; text-align: center;">
+                        <div class="col-xs-1"></div>
+                        <div class="col-xs-3 text-right">{{match.team1.name}}</div>
+                        <div class="col-xs-4" style="font-size: 20px;">
+                            <div class="col-xs-5 text-right">{{match.numberGoalsT1 == null?'-':match.numberGoalsT1}}</div>
+                            <div class="col-xs-2 text-center">:</div>
+                            <div class="col-xs-5 text-left">{{match.numberGoalsT2 == null?'-':match.numberGoalsT2}}</div>
+                        </div>
+                        <div class="col-xs-3 text-left">{{match.team2.name}}</div>
+                        <div class="col-xs-1"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table class="table table-hover table-test-1" id="table" ng-if="vm.isTable" ng-cloak>
             <thead>
             <tr class="table-head">
                 <td width="36px" style="padding-left: 25px">№</td>
@@ -21,7 +40,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr  ng-repeat="team in vm.tournament.teams | orderBy:'-numberPoints'">
+            <tr ng-repeat="team in vm.tournament.teams | orderBy:'-numberPoints'">
                 <th scope="row" class="stat">{{$index+1}}</th>
                 <td>{{team.name}}</td>
                 <td>{{team.numberGames}}</td>
@@ -38,8 +57,9 @@
     </div>
 </div>
 <script class="ng-cloak">
-    setTimeout(function() {
+    setTimeout(function () {
         var i = 6;
+
         function hslToRgb(h, s, l) {
             var r, g, b;
 
@@ -81,9 +101,10 @@
             var rgb = hslToRgb(hue, 1, .5);
             return 'rgb(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + ')';
         }
+
         $(".points").each(function (index, element) {
             $(element).css("color", numberToColorHsl(i / 10, 0, 1));
             i--;
         })
-    },2000)
+    }, 2000)
 </script>

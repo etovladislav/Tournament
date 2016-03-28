@@ -22,6 +22,9 @@ public class Tournament {
     @Column(name = "city", nullable = false)
     private String city;
 
+    @Column(name = "number_tour")
+    private Integer numberTour;
+
     @Column(name = "count_circular", nullable = false)
     private Integer countCircular;
     @ManyToOne(cascade = CascadeType.DETACH)
@@ -43,11 +46,13 @@ public class Tournament {
     public Tournament() {
     }
 
-    public Tournament(String tournamentName, String city, Integer countCircular, User user, List<Team> teams, List<Match> matches) {
+    public Tournament(String tournamentName, String city, Integer numberTour, Integer countCircular, User user, Integer tour, List<Team> teams, List<Match> matches) {
         this.tournamentName = tournamentName;
         this.city = city;
+        this.numberTour = numberTour;
         this.countCircular = countCircular;
         this.user = user;
+        this.tour = tour;
         this.teams = teams;
         this.matches = matches;
     }
@@ -76,6 +81,14 @@ public class Tournament {
         this.city = city;
     }
 
+    public Integer getNumberTour() {
+        return numberTour;
+    }
+
+    public void setNumberTour(Integer numberTour) {
+        this.numberTour = numberTour;
+    }
+
     public Integer getCountCircular() {
         return countCircular;
     }
@@ -90,6 +103,14 @@ public class Tournament {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Integer getTour() {
+        return tour;
+    }
+
+    public void setTour(Integer tour) {
+        this.tour = tour;
     }
 
     public List<Team> getTeams() {

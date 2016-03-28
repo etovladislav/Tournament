@@ -22,7 +22,7 @@ tournamentApp.config(['$routeProvider',
                 controller: 'TournamentsListCtrl',
                 controllerAs: 'vm'
             })
-            .when('/my', {
+            .when('/', {
                 templateUrl: '/partials/my-tournaments.html',
                 controller: 'MyTournamentCtrl',
                 controllerAs: 'vm'
@@ -35,6 +35,11 @@ tournamentApp.config(['$routeProvider',
             .when('/tournament/:tId', {
                 templateUrl: 'partials/table.html',
                 controller: 'TableCtrl',
+                controllerAs: 'vm'
+            })
+            .when('/schedule/:tId', {
+                templateUrl: 'partials/schedule.html',
+                controller: 'ScheduleCtrl',
                 controllerAs: 'vm'
             })
             .otherwise({redirectTo: '/'});

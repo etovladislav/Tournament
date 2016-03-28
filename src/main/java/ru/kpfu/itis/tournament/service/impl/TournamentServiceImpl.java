@@ -10,6 +10,7 @@ import ru.kpfu.itis.tournament.model.Match;
 import ru.kpfu.itis.tournament.model.Team;
 import ru.kpfu.itis.tournament.model.Tournament;
 import ru.kpfu.itis.tournament.model.User;
+import ru.kpfu.itis.tournament.repository.MatchRepository;
 import ru.kpfu.itis.tournament.repository.TournamentRepository;
 import ru.kpfu.itis.tournament.service.TournamentService;
 
@@ -26,6 +27,9 @@ public class TournamentServiceImpl implements TournamentService {
 
     @Autowired
     TournamentRepository tournamentRepository;
+
+    @Autowired
+    MatchRepository matchRepository;
 
     @Override
     public void createTournament(TournamentForm tournamentForm) {
@@ -78,7 +82,7 @@ public class TournamentServiceImpl implements TournamentService {
      */
     @Override
     @Transactional
-    public Tournament generateSchedule(Long tournamentId) {
+    public void generateSchedule(Long tournamentId) {
         Tournament tournament = tournamentRepository.findOneById(tournamentId);
         List<Match> matches = new ArrayList<>();
         List<Team> teams = tournament.getTeams();
@@ -92,7 +96,7 @@ public class TournamentServiceImpl implements TournamentService {
             teams.add(team);
             numberTeam++;
         }
-        int numberTour = isEven ? (numberTeam - 1) : numberTeam;
+        Integer numberTour = isEven ? (numberTeam - 1) : numberTeam;
         int k = numberTeam / 2;
         for (int i = 0; i < numberTour; i++) {
             for (int j = 0; j < k; j++) {
@@ -105,9 +109,19 @@ public class TournamentServiceImpl implements TournamentService {
             }
             teams = changedPosition.apply(teams);
         }
+        tournament.setNumberTour(numberTour);
         tournament.setMatches(matches);
         tournamentRepository.save(tournament);
-        return tournament;
+    }
+
+    @Override
+    public List<Match> getSchedule(Long id) {
+        return matchRepository.findByTournamentId(id);
+    }
+
+    @Override
+    public Integer getNumberTour(Long id) {
+        return tournamentRepository.getNumberTour(id);
     }
 
 

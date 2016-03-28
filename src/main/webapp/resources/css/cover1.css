@@ -16,6 +16,7 @@ body {
     color: #ffffff;
 
 }
+
 .btn-default,
 .btn-default:hover,
 .btn-default:focus {
@@ -24,6 +25,7 @@ body {
     border: 1px solid #fff;
     border-radius: inherit;
 }
+
 .btn-success {
     border-radius: inherit;
 }
@@ -63,6 +65,7 @@ body {
 .header {
     border-bottom: 1px solid rgba(229, 229, 229, 0.34);
 }
+
 /* Make the masthead heading the same height as the navigation */
 .header h3 {
     padding-bottom: 19px;
@@ -84,6 +87,7 @@ body {
         max-width: 730px;
     }
 }
+
 .container-narrow > hr {
     margin: 30px 0;
 }
@@ -105,6 +109,7 @@ body {
     display: table;
     margin: 40px 0;
 }
+
 .marketing p + h4 {
     margin-top: 28px;
 }
@@ -118,10 +123,12 @@ body {
         padding-right: 0;
         padding-left: 0;
     }
+
     /* Space out the masthead */
     .header {
         margin-bottom: 30px;
     }
+
     /* Remove the bottom border on the jumbotron for visual effect */
     .jumbotron {
         border-bottom: 0;
@@ -130,20 +137,21 @@ body {
 }
 
 .table tbody tr td,
-.table>tbody>tr>th{
-    border-top:0.5px solid rgba(255, 255, 255, 0.07);
+.table > tbody > tr > th {
+    border-top: 0.5px solid rgba(255, 255, 255, 0.07);
 }
+
 .table tr:nth-child(2n+2) {
     background: rgba(0, 0, 0, 0.45); /* Цвет фона */
 }
 
-
-.table tbody tr th{
-    padding-right: 0px;!important;
+.table tbody tr th {
+    padding-right: 0px;
+!important;
     padding-left: 25px;
 }
 
-.stat{
+.stat {
 
 }
 
@@ -154,6 +162,7 @@ body {
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
     background: rgba(22, 143, 24, 0.56);
 }
+
 .table-test-1 {
     /*background: url(../images/bg-table.png) repeat;*/
     text-align: center;
@@ -166,22 +175,25 @@ body {
     .table-test-1 {
         font-size: 14px;
     }
-    .jumbotron{
+
+    .jumbotron {
         margin-top: 70px;
     }
 }
 
-.login-form{
+.login-form {
     padding-left: 10px;
 }
 
-.form-control{
+.form-control {
     border-radius: inherit;
 }
-.input-group-sm > .form-control{
+
+.input-group-sm > .form-control {
     border-radius: inherit;
 }
-.form-control:focus{
+
+.form-control:focus {
     border-color: #00ff21;
 }
 
@@ -198,25 +210,25 @@ body {
     margin-bottom: 3px;
 }
 
-
-.header-table-nav a{
+.header-table-nav a {
     text-decoration: none;
     margin-left: 5px;
     color: #c6c6c6;
     padding: 10px;
 
 }
-.header-table-nav a:hover{
+
+.header-table-nav a:hover {
     color: #ffffff;
     text-shadow: 2px 2px 4px rgb(0, 0, 0);
 }
 
-.active i{
+.active i {
     text-shadow: 2px 2px 4px rgb(0, 0, 0);
     color: #ffffff;
 }
 
-.diagonal-table i{
+.diagonal-table i {
 }
 
 .command-list {
@@ -228,18 +240,25 @@ body {
     text-align: left;
 }
 
-.edit-command tbody tr td{
+.edit-command tbody tr td {
     padding: 5px;
 }
 
-.delete-command i{
+.delete-command i {
     color: #ff5d5d;
 }
-.delete-command i:hover{
+
+.delete-command i:hover {
     color: #ff0006;
 }
 
-.panel{
-    border-radius: inherit;!important;
+.panel {
+    border-radius: inherit;
+!important;
 }
 
+.schedule {
+    background-color: rgba(255, 255, 255, 0.86);
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
