@@ -11,15 +11,18 @@
                 <h3 style="color: black">{{tour.numberTour}} тур</h3>
                 <div class="panel panel-default" ng-animate="'animate'" ng-repeat="match in tour.matchList">
                     <div class="panel-body" style="color:black; text-align: center;">
-                        <div class="col-xs-1"></div>
-                        <div class="col-xs-3 text-right">{{match.team1.name}}</div>
-                        <div class="col-xs-4" style="font-size: 20px;">
-                            <div class="col-xs-5 text-right">{{match.numberGoalsT1 == null?'-':match.numberGoalsT1}}</div>
-                            <div class="col-xs-2 text-center">:</div>
-                            <div class="col-xs-5 text-left">{{match.numberGoalsT2 == null?'-':match.numberGoalsT2}}</div>
+                        <div class="col-xs-12" ng-if="match.team1.name == 'MISSED_ROUND' || match.team2.name == 'MISSED_ROUND'">
+                                Команда {{match.team1.name == 'MISSED_ROUND'?match.team2.name:match.team1.name}} пропускает тур
                         </div>
-                        <div class="col-xs-3 text-left">{{match.team2.name}}</div>
-                        <div class="col-xs-1"></div>
+                        <div class="col-xs-12" ng-if="!(match.team1.name == 'MISSED_ROUND' || match.team2.name == 'MISSED_ROUND')">
+                            <div class="col-xs-4 text-right">{{match.team1.name}}</div>
+                            <div class="col-xs-4" style="font-size: 20px;">
+                                <div class="col-xs-4 text-right">{{match.numberGoalsT1 == null?'-':match.numberGoalsT1}}</div>
+                                <div class="col-xs-2 text-center">:</div>
+                                <div class="col-xs-4 text-left">{{match.numberGoalsT2 == null?'-':match.numberGoalsT2}}</div>
+                            </div>
+                            <div class="col-xs-4 text-left">{{match.team2.name}}</div>
+                        </div>
                     </div>
                 </div>
             </div>

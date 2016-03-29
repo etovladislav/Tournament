@@ -53,23 +53,27 @@ public class TournamentServiceImpl implements TournamentService {
         return tournamentRepository.findOneById(id);
     }
 
-    /*
-     * Двигает каждую команду в списке на одну позицию по часовой стрелке,
-     * кроме 1-ой команды, 2-ая команда уходи в конец
-     */
     private Function<List<Team>, List<Team>> changedPosition = s -> {
-        Team secondTeam = s.get(1);
+        int countTeam = s.size();
+        int middle = countTeam / 2;
+
+        Team teamInMiddle = s.get(middle - 1);
         Team temp;
-        for (int i = 2; i < s.size(); i++) {
-            temp = s.get(i);
-            if (i == s.size() - 1) {
-                break;
-            }
-            s.set(i, s.get(i + 1));
-            s.set(i - 1, temp);
+        Team[] teams = new Team[countTeam];
+        teams[0] = s.get(0);
+        teams[countTeam - 1] = s.get(middle - 1);
+        teams[1] = s.get(middle);
+        for (int i = 2; i < middle; i++) {
+            teams[i] = s.get(i-1);
         }
-        s.set(s.size() - 1, secondTeam);
-        return s;
+        for (int i = middle; i < countTeam-1; i++) {
+            if (i == countTeam - 1) {
+                continue;
+            }
+            teams[i] = s.get(i+1);
+        }
+        System.err.println(Arrays.toString(teams));
+        return new ArrayList<Team>(Arrays.asList(teams));
     };
 
 
@@ -92,11 +96,10 @@ public class TournamentServiceImpl implements TournamentService {
             isEven = false;
             Team team = new Team();
             team.setName("MISSED_ROUND");
-            team.setTournament(tournament);
             teams.add(team);
             numberTeam++;
         }
-        Integer numberTour = isEven ? (numberTeam - 1) : numberTeam;
+        Integer numberTour = numberTeam - 1;
         int k = numberTeam / 2;
         for (int i = 0; i < numberTour; i++) {
             for (int j = 0; j < k; j++) {
@@ -104,7 +107,7 @@ public class TournamentServiceImpl implements TournamentService {
                 match.setTeam1(teams.get(j));
                 match.setTeam2(teams.get(j + k));
                 match.setTournament(tournament);
-                match.setNumberTour(i+1);
+                match.setNumberTour(i + 1);
                 matches.add(match);
             }
             teams = changedPosition.apply(teams);

@@ -134,4 +134,12 @@ public class Team {
     public void setTournament(Tournament tournament) {
         this.tournament = tournament;
     }
+
+    @Override
+    public String toString() {
+        return "Team{" +
+                "name='" + name + '\'' +
+                ", id=" + id +
+                '}';
+    }
 }

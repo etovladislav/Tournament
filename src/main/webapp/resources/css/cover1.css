@@ -262,3 +262,16 @@ body {
     padding-top: 10px;
     padding-bottom: 10px;
 }
+
+.edit-link{
+    color: green;
+}
+.edit-link a{
+    text-decoration: none;
+}
+.edit-link a:hover{
+    text-decoration: none;
+}
+.edit-link:hover{
+    color: #00a500;
+}
