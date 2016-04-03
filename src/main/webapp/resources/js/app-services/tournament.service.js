@@ -21,6 +21,7 @@ function TournamentService($http) {
     service.editTeam = editTeam;
     service.generateSchedule = generateSchedule;
     service.GetSchedule = GetSchedule;
+    service.saveMatch = saveMatch;
 
     return service;
 
@@ -59,6 +60,10 @@ function TournamentService($http) {
 
     function GetSchedule(id) {
         return $http.get('/api/tournaments/getSchedule/' + id);
+    }
+
+    function saveMatch(match) {
+        return $http.post('/api/tournaments/saveMatch/', match);
     }
 
 }

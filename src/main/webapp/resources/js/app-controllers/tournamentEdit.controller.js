@@ -9,7 +9,7 @@ angular
     .module('appControllers')
     .controller('TournamentEditCtrl', TournamentEditCtrl);
 
-TournamentEditCtrl.$inject = ['TournamentService', '$location', '$rootScope', '$routeParams'];
+TournamentEditCtrl.$inject = ['TournamentService', '$location', '$rootScope', '$routeParams', '$uibModal'];
 function TournamentEditCtrl(TournamentService, $location, $rootScope, $routeParams) {
     var vm = this;
     vm.tournament = null;
@@ -21,6 +21,8 @@ function TournamentEditCtrl(TournamentService, $location, $rootScope, $routePara
         vm.tournament = data;
     })
 
+
+
     vm.addTeam = function () {
         vm.team.name = vm.teamName;
         vm.team.tournamentId = vm.tournamentId;
@@ -31,8 +33,8 @@ function TournamentEditCtrl(TournamentService, $location, $rootScope, $routePara
         })
     }
 
-    vm.generateSchedule = function(id) {
-        TournamentService.generateSchedule(id).success(function() {
+    vm.generateSchedule = function (id) {
+        TournamentService.generateSchedule(id).success(function () {
 
         })
     };
@@ -48,7 +50,7 @@ function TournamentEditCtrl(TournamentService, $location, $rootScope, $routePara
     };
 
     vm.saveTeam = function (idx) {
-        TournamentService.editTeam(vm.selected).success(function() {
+        TournamentService.editTeam(vm.selected).success(function () {
             vm.tournament.teams[idx] = angular.copy(vm.selected);
             vm.reset();
         });

@@ -27,6 +27,7 @@ public class Tournament {
 
     @Column(name = "count_circular", nullable = false)
     private Integer countCircular;
+
     @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "user_id")
     @JsonIgnore

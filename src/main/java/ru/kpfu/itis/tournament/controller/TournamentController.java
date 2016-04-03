@@ -8,6 +8,8 @@ import ru.kpfu.itis.tournament.form.*;
 import ru.kpfu.itis.tournament.model.Match;
 import ru.kpfu.itis.tournament.model.Team;
 import ru.kpfu.itis.tournament.model.Tournament;
+import ru.kpfu.itis.tournament.repository.MatchRepository;
+import ru.kpfu.itis.tournament.service.MatchService;
 import ru.kpfu.itis.tournament.service.TeamService;
 import ru.kpfu.itis.tournament.service.TournamentService;
 
@@ -25,6 +27,9 @@ public class TournamentController {
 
     @Autowired
     TeamService teamService;
+
+    @Autowired
+    MatchService matchService;
 
     @RequestMapping(value = "/api/tournaments/createTournament", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
@@ -95,5 +100,9 @@ public class TournamentController {
 
         return tours;
     }
-
+    @RequestMapping(value = "/api/tournaments/saveMatch", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void saveMatch(@RequestBody Match match) {
+        matchService.saveMatch(match);
+    }
 }

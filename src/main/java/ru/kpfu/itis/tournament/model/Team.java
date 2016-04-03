@@ -47,7 +47,7 @@ public class Team {
     Integer numberScore;
 
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JoinColumn(name = "tournament_id")
     @JsonIgnore
     Tournament tournament;

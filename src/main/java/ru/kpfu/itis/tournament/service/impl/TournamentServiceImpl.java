@@ -76,7 +76,6 @@ public class TournamentServiceImpl implements TournamentService {
         return new ArrayList<Team>(Arrays.asList(teams));
     };
 
-
     /**
      * Генерирует расписание по круговому формату
      * Оптимизация TODO

@@ -275,3 +275,10 @@ body {
 .edit-link:hover{
     color: #00a500;
 }
+
+.score-input {
+    height: 68px;
+    width: 102px;
+    font-size: 48px;
+    text-align: center;
+}

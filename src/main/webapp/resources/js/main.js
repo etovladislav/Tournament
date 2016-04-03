@@ -1,8 +1,7 @@
 'use strict';
 var tournamentApp = angular.module('tournamentApp', []);
-var tournamentApp = angular.module('app',[]);
-var tournamentApp = angular.module('appControllers', []);
-
+var tournamentApp = angular.module('app', []);
+var tournamentApp = angular.module('appControllers', ['ui.bootstrap']);
 var tournamentApp = angular.module('tournamentApp', [
     'ngRoute',
     'app',
@@ -40,6 +39,11 @@ tournamentApp.config(['$routeProvider',
             .when('/schedule/:tId', {
                 templateUrl: 'partials/schedule.html',
                 controller: 'ScheduleCtrl',
+                controllerAs: 'vm'
+            })
+            .when('/results/:tId', {
+                templateUrl: 'partials/results.html',
+                controller: 'ResultsCtrl',
                 controllerAs: 'vm'
             })
             .otherwise({redirectTo: '/'});

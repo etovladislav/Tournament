@@ -1,7 +1,7 @@
 'use strict';
 var tournamentApp = angular.module('tournamentApp', []);
 var tournamentApp = angular.module('app',[]);
-var tournamentApp = angular.module('appControllers', []);
+var tournamentApp = angular.module('appControllers',[]);
 
 var tournamentApp = angular.module('tournamentApp', [
     'ngRoute',
