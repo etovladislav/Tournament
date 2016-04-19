@@ -8,5 +8,4 @@ import ru.kpfu.itis.tournament.model.User;
  */
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    User findOneByEmail(String login);
 }
